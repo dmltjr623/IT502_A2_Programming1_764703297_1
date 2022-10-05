@@ -73,7 +73,7 @@ namespace LANGHAM_Hotels_System
                             }
                         case 4:
                             {
-
+                                DeAllocateRooms();
                                 break;
                             }
                         case 5:
@@ -274,6 +274,48 @@ namespace LANGHAM_Hotels_System
             {
                 Console.WriteLine(e);
             }
+        }
+        static void DeAllocateRooms()
+        {
+            Console.Write("If you want to cancel your reservation, please enter the reservation number you set : ");
+            int reservationnumber = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine();
+
+            bool found = false;
+            for (int i = 0; i < ListUserInfo.Count; i++)
+            {
+                if (reservationnumber == ListUserInfo[i].ReservationNumber)
+                {
+                    found = true;
+                }
+                if (found)
+                {
+                    UserInfo result = ListUserInfo.Find(x => x.ReservationNumber == reservationnumber);
+                    ListUserInfo.Remove(result);
+                    ListRoomInfo.RemoveAt(i);
+                }
+            }
+            if (found)
+            {
+                UserInfo result = ListUserInfo.Find(x => x.ReservationNumber == reservationnumber);
+                ListUserInfo.Remove(result);
+            }
+            else
+            {
+                Console.WriteLine("Sorry your password is worng, please check it again Or reserve first and then make password");
+            }
+
+            //for (int i = 0; i < ListUserInfo.Count; i++)
+            //{
+            //    if (reservationnumber == ListUserInfo[i].ReservationNumber)
+            //    {
+            //        ListUserInfo.RemoveAt(i);
+            //    }
+            //    else
+            //    {
+            //        Console.WriteLine("Sorry your password is worng, please check it again Or reserve first and then make password");
+            //    }
+            //}
         }
 
 
