@@ -97,22 +97,22 @@ namespace LANGHAM_Hotels_System
                             }
                         case 8:
                             {
-
+                                ShowtheRoomAllocationFromafile();
                                 break;
                             }
                         case 9:
                             {
-
+                                SavetheRoomAllocationToabackupfile();
                                 break;
                             }
                         case 0:
                             {
-
+                                Environment.Exit(0);
                                 break;
                             }
                         case 99:
                             {
-
+                                ShowSavetheRoomAllocationToabackupfile();
                                 break;
                             }
                         default:
@@ -385,6 +385,56 @@ namespace LANGHAM_Hotels_System
                     streamWriter.WriteLine(stradd);
                 }
                 streamWriter.Close();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+        }
+        static void ShowtheRoomAllocationFromafile()
+        {
+            try
+            {
+                FileStream f = new FileStream(filePath, FileMode.OpenOrCreate, FileAccess.Read);
+                StreamReader streamReader = new StreamReader(f);
+                string line = streamReader.ReadLine();
+                while (line != null)
+                {
+                    Console.WriteLine(line);
+                    line = streamReader.ReadLine();
+                }
+                streamReader.Close();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+        }
+        static void SavetheRoomAllocationToabackupfile()
+        {
+            try
+            {
+                File.Copy(filePath, filePath_backup);
+            }
+            catch (System.Exception e)
+            {
+                Console.WriteLine("Please reserve room first", e.Message);
+            }
+            File.Delete(@filePath);
+        }
+        static void ShowSavetheRoomAllocationToabackupfile()
+        {
+            try
+            {
+                FileStream f = new FileStream(filePath_backup, FileMode.OpenOrCreate, FileAccess.Read);
+                StreamReader streamReader = new StreamReader(f);
+                string line = streamReader.ReadLine();
+                while (line != null)
+                {
+                    Console.WriteLine(line);
+                    line = streamReader.ReadLine();
+                }
+                streamReader.Close();
             }
             catch (Exception e)
             {
