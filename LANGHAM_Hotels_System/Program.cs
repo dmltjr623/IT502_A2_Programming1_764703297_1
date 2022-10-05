@@ -6,23 +6,6 @@ using System.Threading.Tasks;
 
 namespace LANGHAM_Hotels_System
 {
-    public class RoomInfo
-    {
-        public string RoomType { get; set; }
-        public string RoomSize { get; set; }
-        public int RoomPrice { get; set; }
-        public int RoomPeople { get; set; }
-    }
-    public class UserInfo
-    {
-        public string UserName { get; set; }
-        public string PhoneNumber { get; set; }
-        public int ReservationNumber { get; set; }
-        public string Requirement { get; set; }
-        public DateTime DayMonthYear { get; set; }
-        public DateTime CheckoutDay { get; set; }
-        public int DayNumber { get; set; }
-    }
     internal class Program
     {
         static void Main(string[] args)
@@ -55,46 +38,57 @@ namespace LANGHAM_Hotels_System
                     {
                         case 1:
                             {
+
                                 break;
                             }
                         case 2:
                             {
+
                                 break;
                             }
                         case 3:
                             {
+
                                 break;
                             }
                         case 4:
                             {
+
                                 break;
                             }
                         case 5:
                             {
+
                                 break;
                             }
                         case 6:
                             {
+
                                 break;
                             }
                         case 7:
                             {
+
                                 break;
                             }
                         case 8:
                             {
+
                                 break;
                             }
                         case 9:
                             {
+
                                 break;
                             }
                         case 0:
                             {
+
                                 break;
                             }
                         case 99:
                             {
+
                                 break;
                             }
                         default:
