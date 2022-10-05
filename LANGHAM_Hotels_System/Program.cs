@@ -63,7 +63,7 @@ namespace LANGHAM_Hotels_System
                             }
                         case 2:
                             {
-
+                                DisplayRooms();
                                 break;
                             }
                         case 3:
@@ -185,5 +185,21 @@ namespace LANGHAM_Hotels_System
                 Console.WriteLine(e);
             }
         }
+        static void DisplayRooms()
+        {
+            try
+            {
+                for (int i = 0; i < ListRoomInfo.Count; i++)
+                {
+                    Console.WriteLine("The Room Type : {0} / The Maximum People of the Room : {1} / The Room Price : {2}$ / The Room Size : {3}",
+                        ListRoomInfo[i].RoomType, ListRoomInfo[i].RoomPeople, ListRoomInfo[i].RoomPrice, ListRoomInfo[i].RoomSize);
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+        }
+
     }
 }
