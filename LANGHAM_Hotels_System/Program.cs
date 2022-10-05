@@ -45,7 +45,7 @@ namespace Hotel_System
                     Console.WriteLine("LANGHAM HOTEL MANAGEMENT SYSTEM");
                     Console.WriteLine("             MENU              ");
                     Console.WriteLine("*******************************");
-                    Console.WriteLine("1. Add RoomsDisplay Rooms");
+                    Console.WriteLine("1. Add Rooms");
                     Console.WriteLine("2. Display Rooms");
                     Console.WriteLine("3. Allocate Rooms");
                     Console.WriteLine("4. De-Allocate Rooms");
@@ -301,15 +301,15 @@ namespace Hotel_System
                     ListRoomInfo.RemoveAt(i);
                 }
             }
-            if (found)
-            {
-                UserInfo result = ListUserInfo.Find(x => x.ReservationNumber == reservationnumber);
-                ListUserInfo.Remove(result);
-            }
-            else
-            {
-                Console.WriteLine("Sorry your password is worng, please check it again Or reserve first and then make password");
-            }
+            //if (found)
+            //{
+            //    UserInfo result = ListUserInfo.Find(x => x.ReservationNumber == reservationnumber);
+            //    ListUserInfo.Remove(result);
+            //}
+            //else
+            //{
+            //    Console.WriteLine("Sorry your password is worng, please check it again Or reserve first and then make password");
+            //}
         }
         static void DisplayRoomAllocationDetails()
         {
