@@ -78,7 +78,7 @@ namespace LANGHAM_Hotels_System
                             }
                         case 5:
                             {
-
+                                DisplayRoomAllocationDetails();
                                 break;
                             }
                         case 6:
@@ -317,7 +317,43 @@ namespace LANGHAM_Hotels_System
             //    }
             //}
         }
+        static void DisplayRoomAllocationDetails()
+        {
+            try
+            {
+                Console.WriteLine("If you want to check your reservation, please enter the reservation number you set");
+                int reservationnumber = Convert.ToInt32(Console.ReadLine());
+                Console.WriteLine();
 
+                DateTime now = DateTime.Now;
+                string currentdaymonthyear = now.ToString();
+                for (int i = 0; i < ListUserInfo.Count; i++)
+                {
+                    if (reservationnumber == ListUserInfo[i].ReservationNumber)
+                    {
+
+                        Console.WriteLine("The Room Type : {0} / The Maximum People of the Room : {1} / " +
+                            "The Room Size : {2} / The Room Price : {3}$ / The Total Room Price : {4}$",
+                             ListRoomInfo[i].RoomType, ListRoomInfo[i].RoomPeople,
+                             ListRoomInfo[i].RoomSize, ListRoomInfo[i].RoomPrice, ListRoomInfo[i].RoomPrice * ListUserInfo[i].DayNumber);
+
+                        Console.WriteLine("Your Name : {0} / Your Phone Number : {1} / Your Requirement : {2}\n" +
+                            "Your Reservation Day(Check In) : {3} / The nights : {4} / Your Check Out Day : {5}\nThe current time : {6}",
+                            ListUserInfo[i].UserName, ListUserInfo[i].PhoneNumber, ListUserInfo[i].Requirement,
+                            ListUserInfo[i].DayMonthYear, ListUserInfo[i].DayNumber, ListUserInfo[i].CheckoutDay, currentdaymonthyear);
+                        Console.WriteLine();
+                    }
+                    //else
+                    //{
+                    //    Console.WriteLine("Sorry your password is worng, please check it again Or reserve first and then make password");
+                    //}
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+        }
 
 
     }
