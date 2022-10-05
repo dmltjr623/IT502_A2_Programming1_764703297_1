@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LANGHAM_Hotels_System
+namespace Hotel_System
 {
     public class RoomInfo
     {
@@ -127,7 +128,7 @@ namespace LANGHAM_Hotels_System
                     Console.WriteLine();
                 } while (answer == 'Y' || answer == 'y');
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 Console.WriteLine(e);
             }
@@ -265,6 +266,7 @@ namespace LANGHAM_Hotels_System
                     Console.WriteLine("The day you want for reservation : {0}", daymonthyear);
                     Console.WriteLine("The Checkout day : {0}", checkoutday);
                     Console.WriteLine("The current day : {0}", currentdaymonthyear);
+
                     incorrect = DateTime.Compare(DateTime.Now, userinfo.DayMonthYear);
 
                     if (incorrect > 0 || incorrect == 0)
@@ -291,14 +293,13 @@ namespace LANGHAM_Hotels_System
                 if (reservationnumber == ListUserInfo[i].ReservationNumber)
                 {
                     found = true;
-                    break;
                 }
-                //if (found)
-                //{
-                //    UserInfo result = ListUserInfo.Find(x => x.ReservationNumber == reservationnumber);
-                //    ListUserInfo.Remove(result);
-                //    ListRoomInfo.RemoveAt(i);
-                //}
+                if (found)
+                {
+                    UserInfo result = ListUserInfo.Find(x => x.ReservationNumber == reservationnumber);
+                    ListUserInfo.Remove(result);
+                    ListRoomInfo.RemoveAt(i);
+                }
             }
             if (found)
             {
@@ -309,18 +310,6 @@ namespace LANGHAM_Hotels_System
             {
                 Console.WriteLine("Sorry your password is worng, please check it again Or reserve first and then make password");
             }
-
-            //for (int i = 0; i < ListUserInfo.Count; i++)
-            //{
-            //    if (reservationnumber == ListUserInfo[i].ReservationNumber)
-            //    {
-            //        ListUserInfo.RemoveAt(i);
-            //    }
-            //    else
-            //    {
-            //        Console.WriteLine("Sorry your password is worng, please check it again Or reserve first and then make password");
-            //    }
-            //}
         }
         static void DisplayRoomAllocationDetails()
         {
@@ -347,14 +336,6 @@ namespace LANGHAM_Hotels_System
                             ListUserInfo[i].UserName, ListUserInfo[i].PhoneNumber, ListUserInfo[i].Requirement,
                             ListUserInfo[i].DayMonthYear, ListUserInfo[i].DayNumber, ListUserInfo[i].CheckoutDay, currentdaymonthyear);
                         Console.WriteLine();
-                    }
-                    //else
-                    //{
-                    //    Console.WriteLine("Sorry your password is worng, please check it again Or reserve first and then make password");
-                    //}
-                    else
-                    {
-                        Console.WriteLine("Sorry your password is worng, please check it again Or reserve first and then make password");
                     }
                 }
             }
@@ -450,7 +431,7 @@ namespace LANGHAM_Hotels_System
         {
             try
             {
-                Console.WriteLine("If you want to check your bills of the rooms, please enter the reservation number you set");
+                Console.Write("If you want to check your bills of the rooms, please enter the reservation number you set : ");
                 int reservationnumber = Convert.ToInt32(Console.ReadLine());
                 Console.WriteLine();
                 for (int i = 0; i < ListUserInfo.Count; i++)
