@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -28,6 +29,10 @@ namespace LANGHAM_Hotels_System
     {
         public static List<RoomInfo> ListRoomInfo = new List<RoomInfo>();
         public static List<UserInfo> ListUserInfo = new List<UserInfo>();
+
+        public static string folderPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+        public static string filePath = Path.Combine(folderPath, @"hms_studentid.txt");
+        public static string filePath_backup = Path.Combine(folderPath, @"hms_studentid_backup.txt");
         static void Main(string[] args)
         {
             try
@@ -83,12 +88,11 @@ namespace LANGHAM_Hotels_System
                             }
                         case 6:
                             {
-
                                 break;
                             }
                         case 7:
                             {
-
+                                SavetheRoomAllocationToafile();
                                 break;
                             }
                         case 8:
@@ -354,7 +358,39 @@ namespace LANGHAM_Hotels_System
                 Console.WriteLine(e);
             }
         }
+        static void SavetheRoomAllocationToafile()
+        {
+            try
+            {
+                Console.WriteLine("Your reservation file has been saved in the file MyDocuments ");
+                FileStream f = new FileStream(filePath, FileMode.OpenOrCreate, FileAccess.Write);
+                StreamWriter streamWriter = new StreamWriter(f);
+                DateTime dateTime = DateTime.Now;
 
+                for (int i = 0; i < ListUserInfo.Count; i++)
+                {
+                    var stradd = "User Name : " + ListUserInfo[i].UserName + " / " +
+                        "User Phone Number : " + ListUserInfo[i].PhoneNumber + " / " +
+                        "User Reservation Number : " + ListUserInfo[i].ReservationNumber + " / " +
+                        "User Requirement : " + ListUserInfo[i].Requirement + "\n" +
+                        "User Room Type : " + ListRoomInfo[i].RoomType + " / " +
+                        "User Room Size : " + ListRoomInfo[i].RoomSize + " / " +
+                        "The Maximum People of the room : " + ListRoomInfo[i].RoomPeople + " / " +
+                        "The Room Price : " + ListRoomInfo[i].RoomPrice + " / " +
+                        "The Total Room Price : " + ListRoomInfo[i].RoomPrice * ListUserInfo[i].DayNumber + "\n" +
+                        "User Reservation Day : " + ListUserInfo[i].DayMonthYear + " / " +
+                        "The Night : " + ListUserInfo[i].DayNumber + " / " +
+                        "The Check Out Day : " + ListUserInfo[i].CheckoutDay + "\n" +
+                        "The Current Time : " + dateTime.ToString() + "\n";
+                    streamWriter.WriteLine(stradd);
+                }
+                streamWriter.Close();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+        }
 
     }
 }
