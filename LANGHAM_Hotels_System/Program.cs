@@ -83,7 +83,7 @@ namespace LANGHAM_Hotels_System
                             }
                         case 6:
                             {
-
+                                 
                                 break;
                             }
                         case 7:
