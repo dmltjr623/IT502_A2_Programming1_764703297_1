@@ -68,7 +68,7 @@ namespace LANGHAM_Hotels_System
                             }
                         case 3:
                             {
-
+                                AllocateRooms();
                                 break;
                             }
                         case 4:
@@ -200,6 +200,83 @@ namespace LANGHAM_Hotels_System
                 Console.WriteLine(e);
             }
         }
+        static void AllocateRooms()
+        {
+            try
+            {
+                DateTime now = DateTime.Now;
+
+                string daymonthyear, currentdaymonthyear, checkoutday;
+                int incorrect;
+                int year, month, day;
+
+                Console.WriteLine();
+                UserInfo userinfo = new UserInfo();
+                int CheckReservationNumber;
+                Console.WriteLine("Welcome to our website!");
+                Console.WriteLine("Please register your information");
+                Console.Write("1. Enter your name : ");
+                userinfo.UserName = Console.ReadLine();
+                Console.Write("2. Enter your phone number : ");
+                userinfo.PhoneNumber = Convert.ToString(Console.ReadLine());
+                Console.Write("3. Please register your reservation number as a password : ");
+                userinfo.ReservationNumber = Convert.ToInt32(Console.ReadLine());
+                Console.Write("4. Please enter again your reservation number to check : ");
+                do
+                {
+                    CheckReservationNumber = Convert.ToInt32(Console.ReadLine());
+                    if (CheckReservationNumber != userinfo.ReservationNumber)
+                    {
+                        Console.Write("Your reservation number is worng, please check it again : ");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Your reservation number is saved");
+                    }
+                } while (CheckReservationNumber != userinfo.ReservationNumber);
+                Console.Write("5. Enter your requirement : ");
+                userinfo.Requirement = Console.ReadLine();
+                Console.WriteLine();
+
+                do
+                {
+                    userinfo.ReservationNumber = userinfo.ReservationNumber;
+                    Console.Write("How many nights you want to live : ");
+                    userinfo.DayNumber = Convert.ToInt32(Console.ReadLine());
+
+                    Console.Write("Please enter the day to reserve(Day) :  ");
+                    day = Convert.ToInt32(Console.ReadLine());
+                    Console.Write("Please enter the day to reserve(Month) :  ");
+                    month = Convert.ToInt32(Console.ReadLine());
+                    Console.Write("Please enter the day to reserve(Year) :  ");
+                    year = Convert.ToInt32(Console.ReadLine());
+
+                    userinfo.DayMonthYear = new DateTime(year, month, day, 14, 00, 00);
+                    daymonthyear = Convert.ToString(userinfo.DayMonthYear);
+                    userinfo.CheckoutDay = userinfo.DayMonthYear.AddDays(userinfo.DayNumber);
+                    userinfo.CheckoutDay = userinfo.CheckoutDay.AddHours(-2);
+                    checkoutday = Convert.ToString(userinfo.CheckoutDay);
+                    currentdaymonthyear = now.ToString();
+                    Console.WriteLine("The day you want for reservation : {0}", daymonthyear);
+                    Console.WriteLine("The Checkout day : {0}", checkoutday);
+                    Console.WriteLine("The current day : {0}", currentdaymonthyear);
+
+                    incorrect = string.Compare(currentdaymonthyear, daymonthyear);
+
+                    if (incorrect > 0 || incorrect == 0)
+                    {
+                        Console.WriteLine("Please enter the day more than current day");
+                    }
+                } while (incorrect > 0 || incorrect == 0);
+                ListUserInfo.Add(userinfo);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+        }
+
+
 
     }
 }
