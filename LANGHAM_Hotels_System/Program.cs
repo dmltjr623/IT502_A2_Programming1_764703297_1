@@ -88,6 +88,7 @@ namespace LANGHAM_Hotels_System
                             }
                         case 6:
                             {
+                                Billing();
                                 break;
                             }
                         case 7:
@@ -441,6 +442,27 @@ namespace LANGHAM_Hotels_System
                 Console.WriteLine(e);
             }
         }
-
+        static void Billing()
+        {
+            try
+            {
+                Console.WriteLine("If you want to check your bills of the rooms, please enter the reservation number you set");
+                int reservationnumber = Convert.ToInt32(Console.ReadLine());
+                Console.WriteLine();
+                for (int i = 0; i < ListUserInfo.Count; i++)
+                {
+                    if (reservationnumber == ListUserInfo[i].ReservationNumber)
+                    {
+                        Console.WriteLine("The Customer Name : {0}", ListUserInfo[i].UserName);
+                        Console.WriteLine("The Room Type : {0} / The Room Price : {1}$ / The nights : {2} / The Total Room Price : {3}$",
+                             ListRoomInfo[i].RoomType, ListRoomInfo[i].RoomPrice, ListUserInfo[i].DayNumber, ListRoomInfo[i].RoomPrice * ListUserInfo[i].DayNumber);
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+        }
     }
 }
